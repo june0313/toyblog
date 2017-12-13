@@ -1,32 +1,24 @@
 package net.jun.toyblog.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
-
+import net.jun.toyblog.domain.User;
+import net.jun.toyblog.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import net.jun.toyblog.domain.Role;
-import net.jun.toyblog.domain.User;
-import net.jun.toyblog.repository.UserRepository;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
 public class UserServiceTest {
-	
-	@Autowired
-	private UserRepository userRepository;
-	
+
 	@Autowired 
 	private UserService userService;
-	
 	private User user;
 
 	@Before
@@ -38,7 +30,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void test() {
+	public void saveUser() {
 		// when
 		User savedUser = userService.saveUser(user);
 		
