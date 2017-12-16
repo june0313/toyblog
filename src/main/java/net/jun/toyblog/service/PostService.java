@@ -34,4 +34,17 @@ public class PostService {
 
 		postRepository.save(post);
 	}
+
+	public PostDto find(long id) {
+		Post post = postRepository.findOne(id);
+
+		return PostDto.builder()
+				.id(post.getId())
+				.title(post.getTitle())
+				.content(post.getContent())
+				.writer(post.getUser().getUsername())
+				.createdDate(post.getCreatedDate())
+				.modifiedDate(post.getLastModifiedDate())
+				.build();
+	}
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>ToyBlog</title>
+</head>
+<body>
+
+<table border="1px">
+    <tr>
+        <td><h2>제목</h2></td>
+        <td>
+            <h2 th:text="${post.title}"></h2>
+        </td>
+    </tr>
+    <tr>
+        <td>작성자</td>
+        <td>
+            <span th:text="${post.writer}"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>내용</td>
+        <td>
+            <p th:text="${post.content}"></p>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
