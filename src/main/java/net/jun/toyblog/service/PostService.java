@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PostService {
@@ -60,5 +61,12 @@ public class PostService {
 				.createdDate(post.getCreatedDate())
 				.modifiedDate(post.getLastModifiedDate())
 				.build());
+	}
+
+	@Transactional
+	public void update(long id, PostDto postDto) {
+		Post post = postRepository.findOne(id);
+		post.updateTitle(postDto.getTitle());
+		post.updateContent(postDto.getContent());
 	}
 }

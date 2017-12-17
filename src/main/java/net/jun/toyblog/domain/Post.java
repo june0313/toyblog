@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @EntityListeners(value = { AuditingEntityListener.class })
 public class Post {
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -36,4 +37,12 @@ public class Post {
 
 	@LastModifiedDate
 	private LocalDateTime lastModifiedDate;
+
+	public void updateTitle(String title) {
+		this.title = title;
+	}
+
+	public void updateContent(String content) {
+		this.content = content;
+	}
 }
