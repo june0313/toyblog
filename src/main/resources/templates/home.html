@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
-<title>Toy Blog</title>
+    <meta charset="UTF-8"/>
+    <title>Toy Blog</title>
 </head>
 <body>
 Toy Blog Home
+<br/>
+<a th:href="@{/posts/new}">글쓰기</a>
+<table border="1px">
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post : ${posts}">
+        <td th:text="${post.id}"></td>
+        <td>
+            <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a>
+        </td>
+        <td th:text="${post.writer}"></td>
+        <td th:text="${post.createdDate}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

@@ -6,6 +6,8 @@ import net.jun.toyblog.repository.PostRepository;
 import net.jun.toyblog.repository.UserRepository;
 import net.jun.toyblog.service.dto.PostDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -46,5 +48,17 @@ public class PostService {
 				.createdDate(post.getCreatedDate())
 				.modifiedDate(post.getLastModifiedDate())
 				.build();
+	}
+
+	public Page<PostDto> findAll(Pageable pageable) {
+		Page<Post> postPage = postRepository.findAll(pageable);
+		return postPage.map(post -> PostDto.builder()
+				.id(post.getId())
+				.title(post.getTitle())
+				.content(post.getContent())
+				.writer(post.getUser().getUsername())
+				.createdDate(post.getCreatedDate())
+				.modifiedDate(post.getLastModifiedDate())
+				.build());
 	}
 }
