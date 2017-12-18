@@ -69,4 +69,9 @@ public class PostService {
 		post.updateTitle(postDto.getTitle());
 		post.updateContent(postDto.getContent());
 	}
+
+	@Transactional
+	public void delete(long id) {
+		postRepository.delete(id);
+	}
 }

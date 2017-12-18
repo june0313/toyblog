@@ -29,5 +29,8 @@
 <a href="/">포스트 목록</a>
 <br/>
 <a th:href="@{/posts/{id}/edit(id=${post.id})}">수정</a>
+<form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
+    <button type="submit">삭제</button>
+</form>
 </body>
 </html>

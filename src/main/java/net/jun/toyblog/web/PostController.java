@@ -58,6 +58,19 @@ public class PostController {
 		return "redirect:/";
 	}
 
+	@PostMapping("{id}/delete")
+	public String delete(@PathVariable long id) {
+		String loginUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+		PostDto postDto = postService.find(id);
+
+		if (!postDto.getWriter().equals(loginUsername)) {
+			throw new AccessDeniedException("access denied");
+		}
+
+		postService.delete(id);
+		return "redirect:/";
+	}
+
 	@ExceptionHandler(value = {AccessDeniedException.class})
 	@ResponseStatus(value = HttpStatus.FORBIDDEN)
 	public String accessDenied() {
