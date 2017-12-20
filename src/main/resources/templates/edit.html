@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>ToyBlog</title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
 <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="post">
     <table border="1px">
