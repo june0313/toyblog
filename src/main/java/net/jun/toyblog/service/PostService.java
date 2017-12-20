@@ -25,6 +25,7 @@ public class PostService {
 	}
 
 	public void save(PostDto postDto) {
+		// FIXME : 인증 정보 조회는 컨트롤러 레이어에서 하는게 맞을까?
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
 		User user = userRepository.findByUsername(username);
@@ -53,6 +54,20 @@ public class PostService {
 
 	public Page<PostDto> findAll(Pageable pageable) {
 		Page<Post> postPage = postRepository.findAll(pageable);
+		return postPage.map(post -> PostDto.builder()
+				.id(post.getId())
+				.title(post.getTitle())
+				.content(post.getContent())
+				.writer(post.getUser().getUsername())
+				.createdDate(post.getCreatedDate())
+				.modifiedDate(post.getLastModifiedDate())
+				.build());
+	}
+
+	public Page<PostDto> findAllByUsername(String username, Pageable pageable) {
+		User user = userRepository.findByUsername(username);
+		Page<Post> postPage = postRepository.findAllByUser(user, pageable);
+
 		return postPage.map(post -> PostDto.builder()
 				.id(post.getId())
 				.title(post.getTitle())
