@@ -34,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/posts/new", "/posts/*/edit", "/posts/*/delete").authenticated()
 			.and()
 			.formLogin()
+				.loginPage("/signIn")
 			.and()
 			.csrf().disable();
 	}
