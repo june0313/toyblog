@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: head"></head>
-<body>
-Toy Blog Home
-<br/>
-<a th:href="@{/posts/new}">글쓰기</a>
-<table border="1px">
-    <thead>
-    <tr>
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="post : ${posts}">
-        <td th:text="${post.id}"></td>
-        <td>
-            <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a>
-        </td>
-        <td th:text="${post.writer}"></td>
-        <td th:text="${post.createdDate}"></td>
-    </tr>
-    </tbody>
-</table>
+<body class="bg-light">
+<div class="container">
+
+    <nav class="navbar navbar-dark bg-dark mb-3">
+        <a class="navbar-brand mb-0 h1" href="/">Toy Blog</a>
+        <form class="form-inline">
+            <a class="btn btn-primary" href="/posts/new">글쓰기</a>
+        </form>
+    </nav>
+
+    <div class="jumbotron">
+        <h1 class="display-3">Hello, Toylog</h1>
+        <p class="lead">Toylog는 개발자를 위한 블로그 입니다. 지금 바로 지식을 공유해보세요!</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/posts/new" role="button">글쓰기</a>
+        </p>
+    </div>
+
+    <h3>New posts</h3>
+
+    <div class="row" th:each="post : ${posts}">
+        <div class="col-sm-12">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a>
+                    </h4>
+                    <p class="card-text" th:text="${post.content}"></p>
+                    <p class="card-text">
+                        <small class="text-muted" th:text="${post.createdDate}"></small>
+                        <br/>
+                        <small class="text-muted" th:text="${'posted by '+ post.writer}"></small>
+                    </p>
+                    <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-primary">Read more ... </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments :: script"></div>
 </body>
 </html>
