@@ -11,7 +11,7 @@ public class AuthController {
 
 	@GetMapping("/signIn")
 	public String signIn(String error, Model model) {
-		Optional.ofNullable(error).ifPresent(e -> model.addAttribute("error", e));
+		Optional.ofNullable(error).ifPresent(e -> model.addAttribute("error", true));
 		return "signIn";
 	}
 }

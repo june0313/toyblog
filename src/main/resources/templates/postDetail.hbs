@@ -1,0 +1,33 @@
+{{#partial "body"}}
+    <div class="container">
+        <nav class="navbar navbar-dark bg-dark mb-3">
+            <a class="navbar-brand mb-0 h1" href="/">Toy Blog</a>
+            <form class="form-inline">
+                <a class="btn btn-primary" href="/posts/new">글쓰기</a>
+            </form>
+        </nav>
+
+        {{#with post}}
+            <div class="mb-2 mt-5">
+                <h1>{{title}}</h1>
+            </div>
+
+            <div class="mb-5">
+                <span class="text-secondary">{{createdDate}}</span>
+                <span class="text-secondary">posted by {{writer}}</span>
+            </div>
+
+            <p>{{content}}</p>
+
+            <div class="text-right">
+                <form action="/posts/{{id}}/delete" method="post">
+                    <a class="btn btn-primary btn-sm" href="/">목록</a>
+                    <a class="btn btn-secondary btn-sm" href="/posts/{{id}}/edit">수정</a>
+                    <button class="btn btn-danger btn-sm" type="submit">삭제</button>
+                </form>
+            </div>
+        {{/with}}
+    </div>
+{{/partial}}
+
+{{> layout/baseLayout}}
