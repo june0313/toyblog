@@ -1,11 +1,6 @@
 {{#partial "body"}}
     <div class="container">
-        <nav class="navbar navbar-dark bg-dark mb-3">
-            <a class="navbar-brand mb-0 h1" href="/">Toy Blog</a>
-            <form class="form-inline">
-                <a class="btn btn-primary" href="/posts/new">글쓰기</a>
-            </form>
-        </nav>
+        {{> component/navigationBar}}
 
         {{#with post}}
             <form action="/posts/{{id}}/edit" method="post">
