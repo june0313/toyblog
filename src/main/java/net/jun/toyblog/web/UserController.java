@@ -15,13 +15,13 @@ public class UserController {
 	private UserService userService;
 	
 	
-	@GetMapping("/register")
-	public String registerView() {
-		return "register";
+	@GetMapping("/signUp")
+	public String signUpView() {
+		return "signUp";
 	}
 	
-	@PostMapping("register")
-	public String register(User user) {
+	@PostMapping("/signUp")
+	public String signUp(User user) {
 		userService.saveUser(user);
 		return "redirect:/";
 	}

@@ -1,0 +1,43 @@
+{{#partial "body"}}
+    <div class="container">
+        <nav class="navbar navbar-dark bg-dark mb-3">
+            <a class="navbar-brand mb-0 h1" href="/">Toy Blog</a>
+            <form class="form-inline">
+                <a class="btn btn-primary" href="/posts/new">글쓰기</a>
+            </form>
+        </nav>
+
+        <div class="jumbotron">
+            <h1 class="display-3">Hello, Toylog</h1>
+            <p class="lead">Toylog는 개발자를 위한 블로그 입니다. 지금 바로 지식을 공유해보세요!</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/posts/new" role="button">글쓰기</a>
+            </p>
+        </div>
+
+        <h3>New posts</h3>
+
+        {{#each posts}}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="/posts/{{id}}">{{title}}</a>
+                            </h4>
+                            <p class="card-text">{{content}}</p>
+                            <p class="card-text">
+                                <small class="text-muted">{{createdDate}}</small>
+                                <br/>
+                                <small class="text-muted">posted by {{writer}}</small>
+                            </p>
+                            <a href="/posts/{{id}}" class="btn btn-primary">Read more ... </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+{{/partial}}
+
+{{> layout/baseLayout}}
