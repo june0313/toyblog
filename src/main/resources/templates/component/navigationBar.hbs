@@ -1,6 +1,19 @@
 <nav class="navbar navbar-dark bg-dark mb-3">
     <a class="navbar-brand mb-0 h1" href="/">Toy Blog</a>
     <form class="form-inline">
-        <a class="btn btn-primary" href="/signIn">Sign In</a>
+        {{#if isUserSignedIn}}
+            <div>
+                <span class="navbar-text">
+                    Hello {{username}}!
+                </span>
+                <a class="btn btn-primary" href="/posts/new">글쓰기</a>
+                <a class="btn btn-secondary" href="/logout">Sign out</a>
+            </div>
+        {{else}}
+            <div>
+                <a class="btn btn-primary" href="/signIn">Sign In</a>
+                <a class="btn btn-secondary" href="/signUp">Sign Up</a>
+            </div>
+        {{/if}}
     </form>
 </nav>
